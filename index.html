@@ -2,62 +2,49 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Mes projets</title>
+  <title>Mon site</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #cce7ff, #ffffff); /* fond dégradé bleu → blanc */
-      color: #333;
+      background: linear-gradient(to bottom, #cce7ff, #ffffff);
       margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #0055a5;
-    }
-
-    h2 {
-      color: #0055a5;
-      margin-top: 40px;
-    }
-
-    ul {
-      list-style: none;
       padding: 0;
     }
 
-    li {
-      margin: 15px 0;
-    }
-
-    a {
-      text-decoration: none;
-      background-color: #0077cc;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 8px;
-      transition: background-color 0.3s;
-    }
-
-    a:hover {
+    nav {
       background-color: #0055a5;
+      padding: 10px;
+      text-align: center;
     }
 
-    p {
-      text-align: center;
-      font-size: 1.1em;
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      padding: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>Erwan Gilland</h1>
-  <p>Étudiant en deuxième année à l'ENSAI, en science des données. Ce site à pour but de partager les différents projets et travaux effectués cours de cette formation</p>
+  <!-- barre de navigation -->
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="ensai.html">ENSAI</a>
+    <a href="loisirs.html">Loisirs</a>
+  </nav>
 
-  <h2>Projets</h2>
-  <ul>
-    <li><a href="https://github.com/ErwanGld13013/Projet_F1" target="_blank">Projet informatique sur la formule 1</a></li>
-    <li><a href="https://erwangld13013.github.io/Groupe26.pdf" target="_blank">Projet statistique sur le lien entre la composition familiale et les consommations</a></li>
-  </ul>
+  <!-- contenu -->
+  <div class="content">
+    <h1>Bienvenue sur mon site</h1>
+    <p>Ici je partagerai mes projets et mes passions.</p>
+  </div>
 </body>
 </html>
