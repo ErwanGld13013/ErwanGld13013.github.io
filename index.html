@@ -1,25 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Mes projets</title>
+  <title>Erwan Gilland – Projets</title>
+
+  <!-- Style général -->
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #cce7ff, #ffffff); /* fond dégradé bleu → blanc */
-      color: #333;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(to bottom right, #bcdcff, #ffffff);
+      color: #222;
+      line-height: 1.6;
+    }
+
+    /* Conteneur principal */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 40px 50px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
 
     h1 {
       text-align: center;
-      color: #0055a5;
+      font-size: 2.4em;
+      color: #004a99;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 40px;
     }
 
     h2 {
-      color: #0055a5;
+      font-size: 1.8em;
+      color: #004a99;
+      border-left: 4px solid #004a99;
+      padding-left: 10px;
       margin-top: 40px;
+      margin-bottom: 20px;
     }
 
     ul {
@@ -28,37 +54,74 @@
     }
 
     li {
-      margin: 15px 0;
+      margin: 20px 0;
     }
 
-    a {
-      text-decoration: none;
-      background-color: #0077cc;
+    /* Boutons-lien */
+    a.project-link {
+      display: inline-block;
+      padding: 12px 18px;
+      background: #006dcc;
       color: white;
-      padding: 10px 15px;
-      border-radius: 8px;
-      transition: background-color 0.3s;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.25s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    a:hover {
-      background-color: #0055a5;
+    a.project-link:hover {
+      background: #004f99;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
     }
 
-    p {
+    /* Pied de page */
+    .footer {
       text-align: center;
-      font-size: 1.1em;
+      color: #666;
+      font-size: 0.9em;
+      margin-top: 50px;
     }
   </style>
 </head>
-<body>
-  <h1>Erwan Gilland</h1>
-  <p>Étudiant en deuxième année à l'ENSAI, en science des données. Ce site à pour but de partager les différents projets et travaux effectués cours de cette formation</p>
 
-  <h2>Projets</h2>
-  <ul>
-    <li><a href="https://github.com/ErwanGld13013/Projet_F1" target="_blank">Projet informatique sur la formule 1</a></li>
-    <li><a href="https://erwangld13013.github.io/Groupe26.pdf" target="_blank">Projet statistique sur le lien entre la composition familiale et les consommations</a></li>
-    <li><a href="https://github.com/Ousseynou-Simal/ENSAI-Projet-info-2A-G11.git" target="_blank">Projt informatique de 2ème année: Application FuelTrack qui permet de suivre l’évolution des prix des carburants (Gazole, SP95, E85, etc.) et d'identifier les meilleures opportunités d’approvisionnement à partir d’un code postal ou d’une adresse donnée</a></li>
-  </ul>
+<body>
+
+  <div class="container">
+
+    <h1>Erwan Gilland</h1>
+    <p class="subtitle">
+      Étudiant en deuxième année à l’ENSAI en science des données.<br>
+      Ce site présente mes principaux projets réalisés durant ma formation.
+    </p>
+
+    <h2>Projets</h2>
+    <ul>
+      <li>
+        <a class="project-link" href="https://github.com/ErwanGld13013/Projet_F1" target="_blank">
+          Projet informatique : Modélisation et analyses F1
+        </a>
+      </li>
+
+      <li>
+        <a class="project-link" href="https://erwangld13013.github.io/Groupe26.pdf" target="_blank">
+          Projet statistique : Composition familiale et consommation
+        </a>
+      </li>
+
+      <li>
+        <a class="project-link" href="https://github.com/Ousseynou-Simal/ENSAI-Projet-info-2A-G11.git" target="_blank">
+          Projet informatique : Application FuelTrack (prix des carburants)
+        </a>
+      </li>
+    </ul>
+
+    <div class="footer">
+      © 2025 – Site personnel d’Erwan Gilland
+    </div>
+
+  </div>
+
 </body>
 </html>
