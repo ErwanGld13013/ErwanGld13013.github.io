@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Erwan Gilland — étudiant ENSAI en science des données, projets et stages en statistique et data science.">
 <title>Erwan Gilland – Projets</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,7 @@
     --card:#FFFFFF;
     --ink:#14213D;
     --ink-soft:#3C4A63;
-    --muted:#68758A;
+    --muted:#526080;
     --line:#DBE2EA;
     --accent:#C98A2E;
     --accent-soft:#F2E2C6;
@@ -107,25 +108,69 @@
     .signature .pt{ animation:none; opacity:0.85; }
   }
 
+  /* ---------- NAV TABS ---------- */
+  .tabnav{
+    max-width:816px;
+    margin:0 auto;
+    padding:0 28px;
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:var(--paper);
+  }
+  .tabnav-inner{
+    display:flex;
+    gap:4px;
+    border-bottom:1px solid var(--line);
+    padding-top:8px;
+  }
+  .tab-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85em;
+    letter-spacing:0.02em;
+    color:var(--muted);
+    background:none;
+    border:none;
+    padding:12px 18px;
+    cursor:pointer;
+    position:relative;
+    top:1px;
+    border-bottom:2px solid transparent;
+    transition:color 0.2s ease, border-color 0.2s ease;
+  }
+  .tab-btn:hover{ color:var(--ink); }
+  .tab-btn[aria-selected="true"]{
+    color:var(--ink);
+    border-bottom-color:var(--accent);
+    font-weight:500;
+  }
+  .tab-btn:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  @media (max-width:600px){
+    .tabnav{ padding:0 22px; }
+    .tab-btn{ padding:10px 12px; font-size:0.78em; }
+  }
+
   /* ---------- SECTIONS ---------- */
   h2{
     font-family:'Fraunces', serif;
     font-weight:600;
     font-size:1.5em;
     color:var(--ink);
-    margin:0 0 22px;
-    display:flex;
-    align-items:baseline;
-    gap:12px;
-  }
-  h2 .num{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.55em;
-    color:var(--accent);
-    font-weight:500;
+    margin:0 0 8px;
   }
 
-  section{ margin-top:56px; }
+  .section-lead{
+    margin:0 0 26px;
+    max-width:60ch;
+    color:var(--muted);
+  }
+
+  .panel{ margin-top:56px; }
+  .panel[hidden]{ display:none; }
 
   section.about p{ max-width:64ch; }
 
@@ -147,7 +192,7 @@
     border-radius:999px;
   }
 
-  /* ---------- PROJECT CARDS ---------- */
+  /* ---------- PROJECT / STAGE CARDS ---------- */
   ul.projects{
     list-style:none;
     padding:0;
@@ -232,10 +277,56 @@
   }
   .card-link .arrow{ transition:transform 0.2s ease; }
   .card-link:hover .arrow{ transform:translateX(2px); }
+  .card-link .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
 
   a:focus-visible, .card-link:focus-visible{
     outline:2px solid var(--accent);
     outline-offset:3px;
+  }
+
+  /* placeholder card (stage report not yet uploaded) */
+  .card.placeholder{
+    border-style:dashed;
+    background:transparent;
+  }
+  .card.placeholder p{ font-style:italic; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .contact-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 20px;
+  }
+  .contact-row .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78em;
+    letter-spacing:0.04em;
+    color:var(--accent);
+    width:96px;
+    flex-shrink:0;
+  }
+  .contact-row a{
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:500;
+    border-bottom:1.5px solid transparent;
+    transition:border-color 0.2s ease, color 0.2s ease;
+  }
+  .contact-row a:hover{
+    color:var(--accent);
+    border-color:var(--accent);
   }
 
   /* ---------- FOOTER ---------- */
@@ -254,6 +345,8 @@
     header.hero{ padding:52px 22px 24px; }
     .wrap{ padding:0 22px 64px; }
     .card{ padding:18px; }
+    .contact-row{ flex-direction:column; align-items:flex-start; gap:4px; }
+    .contact-row .label{ width:auto; }
   }
 </style>
 </head>
@@ -264,7 +357,7 @@
   <h1>Erwan Gilland</h1>
   <p class="role">
     Étudiant en deuxième année à l'ENSAI, filière fonctionnaire.
-    Ce site rassemble mes principaux projets informatiques et statistiques
+    Ce site rassemble mes principaux projets, stages et travaux
     réalisés durant ma formation.
   </p>
 
@@ -283,27 +376,20 @@
   </div>
 </header>
 
+<nav class="tabnav" aria-label="Sections du site">
+  <div class="tabnav-inner" role="tablist">
+    <button class="tab-btn" id="tab-btn-projets" role="tab" aria-selected="true" aria-controls="panel-projets">Projets universitaires</button>
+    <button class="tab-btn" id="tab-btn-stages" role="tab" aria-selected="false" aria-controls="panel-stages">Stages</button>
+    <button class="tab-btn" id="tab-btn-contact" role="tab" aria-selected="false" aria-controls="panel-contact">Contact</button>
+  </div>
+</nav>
+
 <main class="wrap">
 
-  <section class="about">
-    <h2><span class="num">01</span>À propos</h2>
-    <p>
-      Passionné par l'analyse de données et la modélisation statistique, je m'intéresse
-      aussi bien aux projets de traitement de données appliqués (informatique) qu'aux
-      études méthodologiques (statistique publique). Football et musique complètent
-      mes centres d'intérêt en dehors des études.
-    </p>
-    <ul class="skills">
-      <li>R</li>
-      <li>Python</li>
-      <li>SQL</li>
-      <li>Machine Learning</li>
-      <li>Data Visualisation</li>
-    </ul>
-  </section>
-
-  <section class="projects-section">
-    <h2><span class="num">02</span>Projets</h2>
+  <!-- ===================== PROJETS UNIVERSITAIRES ===================== -->
+  <section class="panel" id="panel-projets" role="tabpanel" aria-labelledby="tab-btn-projets" tabindex="0">
+    <h2>Projets universitaires</h2>
+    <p class="section-lead">Travaux réalisés en première et deuxième année à l'ENSAI, en informatique et en statistique.</p>
     <ul class="projects">
 
       <li class="card">
@@ -314,7 +400,7 @@
         <h3>Modélisation et analyses F1</h3>
         <p>Projet de première année : exploration et modélisation de données issues de la Formule 1.</p>
         <a class="card-link" href="https://github.com/ErwanGld13013/Projet_F1" target="_blank" rel="noopener">
-          Voir le dépôt GitHub <span class="arrow">→</span>
+          Voir le dépôt GitHub <span class="sr-only">(nouvel onglet)</span><span class="arrow">→</span>
         </a>
       </li>
 
@@ -326,7 +412,7 @@
         <h3>Composition familiale et consommation</h3>
         <p>Étude statistique du lien entre structure du ménage et comportements de consommation.</p>
         <a class="card-link" href="https://erwangld13013.github.io/Groupe26.pdf" target="_blank" rel="noopener">
-          Lire le rapport <span class="arrow">→</span>
+          Lire le rapport <span class="sr-only">(nouvel onglet)</span><span class="arrow">→</span>
         </a>
       </li>
 
@@ -338,7 +424,7 @@
         <h3>FuelTrack — prix des carburants</h3>
         <p>Application de suivi et de visualisation des prix des carburants, développée en groupe.</p>
         <a class="card-link" href="https://github.com/Ousseynou-Simal/ENSAI-Projet-info-2A-G11.git" target="_blank" rel="noopener">
-          Voir le dépôt GitHub <span class="arrow">→</span>
+          Voir le dépôt GitHub <span class="sr-only">(nouvel onglet)</span><span class="arrow">→</span>
         </a>
       </li>
 
@@ -350,15 +436,89 @@
         <h3>Confiance en la police nationale</h3>
         <p>Analyse statistique des déterminants de la confiance des citoyens envers la police nationale.</p>
         <a class="card-link" href="https://erwangld13013.github.io/Groupe15.pdf" target="_blank" rel="noopener">
-          Lire le rapport <span class="arrow">→</span>
+          Lire le rapport <span class="sr-only">(nouvel onglet)</span><span class="arrow">→</span>
         </a>
       </li>
 
     </ul>
   </section>
 
+  <!-- ===================== STAGES ===================== -->
+  <section class="panel" id="panel-stages" role="tabpanel" aria-labelledby="tab-btn-stages" tabindex="0" hidden>
+    <h2>Stages</h2>
+    <p class="section-lead">Rapports de stage réalisés dans le cadre de la formation ENSAI.</p>
+    <ul class="projects">
+
+      <li class="card placeholder">
+        <div class="card-top">
+          <span class="tag">2A</span>
+          <span class="tag kind">INSEE — DMOAE</span>
+        </div>
+        <h3>Typologie territoriale des unités primaires</h3>
+        <p>
+          Construction et validation d'une typologie territoriale des unités primaires (UP)
+          à partir de deux enquêtes ménages multimode (ENL, ESR) : classification ascendante
+          hiérarchique (CAH), modèles multiniveaux (GLMM) et validation croisée.
+        </p>
+        <p>Rapport à venir — lien à ajouter dès publication.</p>
+        <!-- Quand le rapport est prêt, remplace ce bloc par :
+        <a class="card-link" href="LIEN_VERS_TON_RAPPORT.pdf" target="_blank" rel="noopener">
+          Lire le rapport <span class="sr-only">(nouvel onglet)</span><span class="arrow">→</span>
+        </a>
+        -->
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-btn-contact" tabindex="0" hidden>
+    <h2>Contact</h2>
+    <p class="section-lead">N'hésitez pas à me contacter pour toute question ou opportunité.</p>
+    <div class="contact-grid">
+      <div class="contact-row">
+        <span class="label">Email</span>
+        <a href="mailto:ton.adresse@exemple.fr">ton.adresse@exemple.fr</a>
+      </div>
+      <div class="contact-row">
+        <span class="label">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/ton-profil" target="_blank" rel="noopener">linkedin.com/in/ton-profil</a>
+      </div>
+      <div class="contact-row">
+        <span class="label">GitHub</span>
+        <a href="https://github.com/ErwanGld13013" target="_blank" rel="noopener">github.com/ErwanGld13013</a>
+      </div>
+    </div>
+  </section>
+
   <div class="footer">© 2026 — Site personnel d'Erwan Gilland</div>
 </main>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = {
+    'tab-btn-projets': document.getElementById('panel-projets'),
+    'tab-btn-stages': document.getElementById('panel-stages'),
+    'tab-btn-contact': document.getElementById('panel-contact'),
+  };
+
+  function activate(tab){
+    tabs.forEach(t => {
+      const selected = t === tab;
+      t.setAttribute('aria-selected', selected ? 'true' : 'false');
+      panels[t.id].hidden = !selected;
+    });
+    tab.focus();
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activate(tab));
+    tab.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowRight'){ e.preventDefault(); activate(tabs[(i+1) % tabs.length]); }
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); activate(tabs[(i-1+tabs.length) % tabs.length]); }
+    });
+  });
+</script>
 
 </body>
 </html>
